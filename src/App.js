@@ -26,16 +26,17 @@ class App extends React.Component {
   }
 
   render() {
-    return <div>
+    return <div className="app">
       <textarea
         // defaultValue={data}
         ref={this.jsonRef}
         name="json"
         id="json"
-        cols="200"
-        rows="40">
+        cols="100"
+        rows="20">
       </textarea>
-      <button onClick={this.handleClick}>Convert</button>
+      <br />
+      <button className="btn" onClick={this.handleClick}>Convert</button>
     </div>
   }
 }
