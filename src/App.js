@@ -3,7 +3,7 @@ import converter from 'json-2-csv';
 import downloadFile from 'js-file-download';
 
 import './App.css';
-import data from './data';
+// import data from './data';
 import { mapDataByProject } from './dataMaping';
 
 class App extends React.Component {
@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return <div>
       <textarea
-        defaultValue={data}
+        // defaultValue={data}
         ref={this.jsonRef}
         name="json"
         id="json"
