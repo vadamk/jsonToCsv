@@ -1,7 +1,10 @@
 import React from 'react';
-import './App.css';
 import converter from 'json-2-csv';
 import downloadFile from 'js-file-download';
+
+import './App.css';
+import data from './data';
+import { mapDataByProject } from './dataMaping';
 
 class App extends React.Component {
 
@@ -15,24 +18,7 @@ class App extends React.Component {
   handleClick() {
     const { value } = this.jsonRef.current;
     const obj = JSON.parse(value);
-    const data = obj.Data[0].UserReportDayModels.map(item => {
-
-      const projects = {}
-
-      item.UserProjectTimeLogViewModels.forEach((pr) => {
-        projects[pr.Name] = {
-          Hours: pr.OfficialHoursModel.Hours || 0,
-          Description: pr.OfficialHoursModel.Description || ''
-        }
-      });
-
-      return {
-        date: new Date(item.Day),
-        ...projects
-      }
-    })
-
-    console.log('data: ', data);
+    const data = mapDataByProject(obj);
     converter.json2csv(data, (err, res) => {
       if (err) { throw err }
       downloadFile(res, 'report.csv')
@@ -42,6 +28,7 @@ class App extends React.Component {
   render() {
     return <div>
       <textarea
+        defaultValue={data}
         ref={this.jsonRef}
         name="json"
         id="json"
