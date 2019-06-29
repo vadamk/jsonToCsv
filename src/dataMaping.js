@@ -39,9 +39,9 @@ export const mapDataByProject = data => {
   usersList.forEach(user => {
     user.DayUserProjectReportModels.forEach((day, i) => {
       NextData[i][user.UserName] = {
-        OfficialHours: day.OfficialHours,
-        OvertimeHours: day.OvertimeHours,
-        DescritionForOfficial: day.DescritionForOfficial || '',
+        Hours: day.OfficialHours,
+        Overtime: day.OvertimeHours,
+        Descrition: day.DescritionForOfficial || '',
         DescriptionForOvertime: day.DescriptionForOvertime || '',
       }
     });
